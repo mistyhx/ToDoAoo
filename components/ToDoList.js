@@ -1,24 +1,20 @@
 import React, { Component } from "react";
 import { Query, withApollo } from "react-apollo";
-import { LIST_RECEIPES } from "./query";
+import { LIST_TODOS } from "./query";
 import { Text, View, FlatList } from "react-native";
 
 class ToDoList extends Component {
   render() {
     return (
-      <Query query={LIST_RECEIPES}>
-        {({ loading, data }) => {
+      <Query query={LIST_TODOS}>
+        {({ loading, error, data }) => {
           if (loading) return <Text>loading</Text>;
 
-          const itemsToRender = data.listRecipes.items;
           return (
             <View>
-              <FlatList
-                data={itemsToRender}
-                renderItem={({ item, index }) => (
-                  <Text key={index}>{item.name}</Text>
-                )}
-              />
+              {data.toDoes.map(post => (
+                <Text>{post.title}</Text>
+              ))}
             </View>
           );
         }}

@@ -1,29 +1,26 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation";
-import AWSAppSyncClient from "aws-appsync";
-import { Rehydrated } from "aws-appsync-react";
+import { ApolloClient } from "apollo-client";
+import { HttpLink } from "apollo-link-http";
+import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloProvider } from "react-apollo";
 import navigatorConfig from "./router/index";
-import appSyncConfig from "./AppSync";
 
 const Navigator = createStackNavigator(navigatorConfig);
 
-const client = new AWSAppSyncClient({
-  url: appSyncConfig.graphqlEndpoint,
-  region: appSyncConfig.region,
-  auth: {
-    type: appSyncConfig.authenticationType,
-    apiKey: appSyncConfig.apiKey
-  }
+const GRAPHCMS_API =
+  "https://api-useast.graphcms.com/v1/cjkzo3d6u012001ah5x3rknhl/master";
+
+const client = new ApolloClient({
+  link: new HttpLink({ uri: GRAPHCMS_API }),
+  cache: new InMemoryCache()
 });
 
 export default class App extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Rehydrated>
-          <Navigator />
-        </Rehydrated>
+        <Navigator />
       </ApolloProvider>
     );
   }

@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const LIST_TODOS = gql`
-  query toDoes {
+  {
     toDoes {
       id
       title
