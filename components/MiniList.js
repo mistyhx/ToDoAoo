@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Query, withApollo } from "react-apollo";
 import { LIST_TODOS } from "./query";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import Header from "./Header";
+import { MaterialIcons } from "@expo/vector-icons";
 
-class ToDoList extends Component {
+class MiniList extends Component {
   render() {
     return (
       <Query query={LIST_TODOS}>
@@ -13,6 +13,7 @@ class ToDoList extends Component {
 
           return (
             <View style={styles.container}>
+              <Text style={styles.count}>{data.toDoes.length} items</Text>
               {data.toDoes.map(toDo => (
                 <View key={toDo.id} style={styles.todoList}>
                   <View style={styles.todoListItem}>
@@ -20,7 +21,11 @@ class ToDoList extends Component {
                       <TouchableOpacity>
                         <View>
                           {toDo.situation === "In progress" ? (
-                            <View style={styles.inProgress} />
+                            <MaterialIcons
+                              name="check-circle"
+                              color="#5EA80E"
+                              size={18}
+                            />
                           ) : (
                             <View style={styles.notStarted} />
                           )}
@@ -44,52 +49,57 @@ class ToDoList extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingTop: 60
+    flex: 1
   },
-  todoList: {
-    padding: 10
-  },
+  todoList: {},
   title: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "500",
     color: "#252525"
   },
   description: {
     color: "#9d9d9d",
-    fontSize: 14,
-    marginTop: 8
+    fontSize: 13,
+    marginTop: 2
   },
   todoListItem: {
-    padding: 16,
-    flexDirection: "row"
+    flexDirection: "row",
+    paddingTop: 5,
+    paddingBottom: 5
   },
   notStarted: {
-    height: 24,
-    width: 24,
+    height: 16,
+    width: 16,
     marginRight: 10,
     borderStyle: "solid",
-    borderColor: "#9d9d9d",
+    borderColor: "#dfdfdf",
     borderRadius: 100,
     borderWidth: 1.5
   },
 
   inProgress: {
-    height: 24,
-    width: 24,
+    height: 16,
+    width: 16,
     marginRight: 10,
     backgroundColor: "green",
     borderStyle: "solid",
     borderColor: "green",
     borderRadius: 100,
-    borderWidth: 1.5
+    borderWidth: 1.5,
+    alignItems: "center",
+    justifyContent: "center"
   },
   acitonSituation: {
     flex: 1
   },
   toDo: {
     flex: 5
+  },
+  count: {
+    color: "#a8a8a8",
+    fontSize: 14,
+    marginBottom: 10
   }
 });
 
-export default withApollo(ToDoList);
+export default withApollo(MiniList);

@@ -8,7 +8,25 @@ export const LIST_TODOS = gql`
       description
       date
       situation
-      dataTime
+    }
+  }
+`;
+
+export const LISTS = gql`
+  {
+    lists {
+      id
+      name
+      toDoes {
+        id
+        title
+        description
+        situation
+        prioritized
+        date
+      }
+      situation
+      pinned
     }
   }
 `;
