@@ -4,16 +4,12 @@ import {
   View,
   StyleSheet,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from "react-native";
 import Header from "./Header";
-import {
-  WhitespaceLarge,
-  WhitespaceMedium,
-  WhitespaceSmall
-} from "./Whitespace";
+import { WhitespaceLarge, WhitespaceMedium } from "./Whitespace";
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
-import ModalHeader from "./ModalHeader";
 
 class CreateNew extends Component {
   state = {
@@ -22,7 +18,11 @@ class CreateNew extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ModalHeader />
+        <Button
+          title="done"
+          onPress={() => this.props.navigation.navigate("Lists")}
+        />
+
         <WhitespaceMedium />
 
         <Header headerTitle="Create new item" />

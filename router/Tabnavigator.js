@@ -1,6 +1,5 @@
 import React from "react";
 import { createBottomTabNavigator } from "react-navigation";
-import ToDoList from "../components/ToDoList";
 import CreateNew from "../components/CreateNew";
 import Priorities from "../components/Priorities";
 import Settings from "../components/Settings";
@@ -17,11 +16,12 @@ import {
   MaterialIcons,
   MaterialCommunityIcons
 } from "@expo/vector-icons";
+import { ListStack } from "./StackNavigator";
 
 const Tabnavigator = createBottomTabNavigator(
   {
     Lists: {
-      screen: Lists,
+      screen: ListStack,
       navigationOptions: () => ({
         tabBarIcon: ({ tintColor }) => (
           <Feather name="list" color={tintColor} size={24} />

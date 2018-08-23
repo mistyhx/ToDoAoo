@@ -5,9 +5,7 @@ class ModalHeader extends Component {
   render() {
     return (
       <View>
-        <TouchableOpacity>
-          <Text>Done</Text>
-        </TouchableOpacity>
+        <Text>Done</Text>
       </View>
     );
   }

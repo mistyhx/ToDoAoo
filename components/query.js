@@ -30,3 +30,22 @@ export const LISTS = gql`
     }
   }
 `;
+
+export const PINNED_LISTS = gql`
+  {
+    lists(where: { pinned: true }) {
+      id
+      name
+      toDoes {
+        id
+        title
+        description
+        situation
+        prioritized
+        date
+      }
+      situation
+      pinned
+    }
+  }
+`;
