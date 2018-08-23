@@ -1,72 +1,54 @@
 import React, { Component } from "react";
-import { Query, withApollo } from "react-apollo";
-import { PINNED_LISTS } from "./query";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Loading } from "./Loading";
-import ListDetail from "./ListDetail";
 
 class MiniList extends Component {
-  onLearnDetail = list => {
-    this.props.navigation.navigate("ListDetail", { ...list });
-  };
-
   render() {
+    const { onLearnDetail, lists } = this.props;
     return (
-      <Query query={PINNED_LISTS}>
-        {({ loading, error, data }) => {
-          if (loading) return <Loading />;
-          if (error) return <Text>Error</Text>;
+      <View style={styles.container}>
+        {lists.map(list => (
+          <View key={list.id}>
+            <Text style={styles.headerTitle}>{list.name}</Text>
+            <TouchableOpacity onPress={() => onLearnDetail(list)}>
+              <View style={styles.card}>
+                <Text style={styles.count}>{list.toDoes.length} items</Text>
 
-          return (
-            <View style={styles.container}>
-              {data.lists.map(list => (
-                <View key={list.id}>
-                  <Text style={styles.headerTitle}>{list.name}</Text>
-                  <TouchableOpacity onPress={() => this.onLearnDetail(list)}>
-                    <View style={styles.card}>
-                      <Text style={styles.count}>
-                        {list.toDoes.length} items
-                      </Text>
-
-                      {list.toDoes.map(toDo => (
-                        <View key={toDo.id} style={styles.todoListItem}>
-                          <View style={styles.acitonSituation}>
-                            <TouchableOpacity>
-                              <View>
-                                {toDo.situation === "Completed" ? (
-                                  <MaterialCommunityIcons
-                                    name="check-circle-outline"
-                                    color="#5EA80E"
-                                    size={18}
-                                  />
-                                ) : (
-                                  <View style={styles.notStarted} />
-                                )}
-                              </View>
-                            </TouchableOpacity>
-                          </View>
-                          <View style={styles.toDo}>
-                            <Text
-                              style={
-                                toDo.situation === "Completed"
-                                  ? styles.titleCompleted
-                                  : styles.titleNormal
-                              }
-                            >
-                              {toDo.title}
-                            </Text>
-                          </View>
+                {list.toDoes.map(toDo => (
+                  <View key={toDo.id} style={styles.todoListItem}>
+                    <View style={styles.acitonSituation}>
+                      <TouchableOpacity>
+                        <View>
+                          {toDo.situation === "Completed" ? (
+                            <MaterialCommunityIcons
+                              name="check-circle-outline"
+                              color="#5EA80E"
+                              size={18}
+                            />
+                          ) : (
+                            <View style={styles.notStarted} />
+                          )}
                         </View>
-                      ))}
+                      </TouchableOpacity>
                     </View>
-                  </TouchableOpacity>
-                </View>
-              ))}
-            </View>
-          );
-        }}
-      </Query>
+                    <View style={styles.toDo}>
+                      <Text
+                        style={
+                          toDo.situation === "Completed"
+                            ? styles.titleCompleted
+                            : styles.titleNormal
+                        }
+                      >
+                        {toDo.title}
+                      </Text>
+                    </View>
+                  </View>
+                ))}
+              </View>
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
     );
   }
 }
@@ -155,4 +137,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withApollo(MiniList);
+export default MiniList;

@@ -7,13 +7,20 @@ import {
   ScrollView
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Query, withApollo } from "react-apollo";
 import { LinearGradient } from "expo";
 import AllLists from "./AllLists";
 import MiniList from "./MiniList";
+import { PINNED_LISTS } from "./query";
+import { Loading } from "./Loading";
 
 class Lists extends Component {
   static navigationOptions = {
     header: null
+  };
+
+  onLearnDetail = list => {
+    this.props.navigation.navigate("ListDetail", { ...list });
   };
 
   render() {
@@ -31,7 +38,18 @@ class Lists extends Component {
           <Text style={styles.indicator}>Pinned list</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.cardsSlides}>
-              <MiniList />
+              <Query query={PINNED_LISTS}>
+                {({ loading, error, data }) => {
+                  if (loading) return <Loading />;
+                  if (error) return <text>error</text>;
+                  return (
+                    <MiniList
+                      lists={data.lists}
+                      onLearnDetail={list => this.onLearnDetail(list)}
+                    />
+                  );
+                }}
+              </Query>
             </View>
           </ScrollView>
           <View style={styles.cardList}>
@@ -90,4 +108,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Lists;
+export default withApollo(Lists);

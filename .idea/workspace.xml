@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a438e2d-c65e-4535-bd83-e00936149a23" name="Default Changelist" comment="first commit">
-      <change afterPath="$PROJECT_DIR$/components/ListDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/router/StackNavigator.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/CreateNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreateNew.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ListDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ListDetail.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/Lists.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Lists.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/MiniList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/MiniList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ModalHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/ModalHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/query.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/Tabnavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/router/Tabnavigator.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/StackNavigator.js" beforeDir="false" afterPath="$PROJECT_DIR$/router/StackNavigator.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -37,7 +32,7 @@
         <counts>
           <entry key="ToDoList" value="1" />
           <entry key="babelrc" value="1" />
-          <entry key="js" value="53" />
+          <entry key="js" value="55" />
           <entry key="json" value="5" />
           <entry key="md" value="2" />
         </counts>
@@ -45,21 +40,21 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="54" />
+          <entry key="JavaScript" value="56" />
           <entry key="Markdown" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="ToDoList" value="51" />
-          <entry key="js" value="15068" />
+          <entry key="js" value="15450" />
           <entry key="md" value="172" />
           <entry key="txt" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="15119" />
+          <entry key="JavaScript" value="15501" />
           <entry key="Markdown" value="172" />
           <entry key="PLAIN_TEXT" value="12" />
         </counts>
@@ -73,15 +68,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/ToDoList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/CreateNew.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -107,10 +93,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/ModalHeader.js">
+        <entry file="file://$PROJECT_DIR$/components/AllLists.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="149">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -119,12 +105,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/AllLists.js">
+        <entry file="file://$PROJECT_DIR$/components/Loading.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
-                <element signature="e#0#41#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,7 +132,7 @@
         <entry file="file://$PROJECT_DIR$/router/StackNavigator.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -157,8 +143,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Lists.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="645">
+              <caret line="43" column="55" lean-forward="true" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -167,10 +153,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/query.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/ListDetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+            <state relative-caret-position="90">
+              <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -178,11 +173,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/MiniList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+            <state relative-caret-position="30">
+              <caret line="1" column="85" selection-start-line="1" selection-end-line="1" selection-end-column="85" />
+              <caret line="2" column="85" selection-start-line="2" selection-end-line="2" selection-end-column="85" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -224,10 +220,10 @@
         <option value="$PROJECT_DIR$/components/ModalHeader.js" />
         <option value="$PROJECT_DIR$/components/CreateNew.js" />
         <option value="$PROJECT_DIR$/router/Tabnavigator.js" />
-        <option value="$PROJECT_DIR$/components/Lists.js" />
-        <option value="$PROJECT_DIR$/components/ListDetail.js" />
         <option value="$PROJECT_DIR$/router/StackNavigator.js" />
         <option value="$PROJECT_DIR$/components/MiniList.js" />
+        <option value="$PROJECT_DIR$/components/Lists.js" />
+        <option value="$PROJECT_DIR$/components/ListDetail.js" />
       </list>
     </option>
   </component>
@@ -248,8 +244,8 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="328" />
-    <option name="y" value="28" />
+    <option name="x" value="358" />
+    <option name="y" value="23" />
     <option name="width" value="1740" />
     <option name="height" value="984" />
   </component>
@@ -319,12 +315,12 @@
       <workItem from="1534647536667" duration="10526000" />
       <workItem from="1534725758122" duration="4944000" />
       <workItem from="1534869995882" duration="18397000" />
-      <workItem from="1534945778265" duration="17413000" />
+      <workItem from="1534945778265" duration="20120000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64431000" />
+    <option name="totallyTimeSpent" value="67138000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -336,7 +332,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="328" y="28" width="1740" height="984" extended-state="0" />
+    <frame x="358" y="23" width="1740" height="984" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2303665" />
@@ -486,23 +482,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Loading.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/query.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/ModalHeader.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -550,16 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/Lists.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/router/Tabnavigator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
@@ -573,17 +542,34 @@
     <entry file="file://$PROJECT_DIR$/router/StackNavigator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/ListDetail.js">
+    <entry file="file://$PROJECT_DIR$/components/Loading.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="27" lean-forward="true" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="12" lean-forward="true" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/Lists.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="55" lean-forward="true" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -592,8 +578,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/MiniList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="35" column="34" lean-forward="true" selection-start-line="35" selection-start-column="34" selection-end-line="35" selection-end-column="34" />
+        <state relative-caret-position="30">
+          <caret line="1" column="85" selection-start-line="1" selection-end-line="1" selection-end-column="85" />
+          <caret line="2" column="85" selection-start-line="2" selection-end-line="2" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/ListDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>

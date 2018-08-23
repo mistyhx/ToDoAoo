@@ -6,7 +6,7 @@ import MiniList from "../components/MiniList";
 
 export const ListStack = createStackNavigator({
   Lists: {
-    screen: MiniList
+    screen: Lists
   },
 
   ListDetail: {
