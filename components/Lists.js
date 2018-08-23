@@ -11,7 +11,7 @@ import { Query, withApollo } from "react-apollo";
 import { LinearGradient } from "expo";
 import AllLists from "./AllLists";
 import MiniList from "./MiniList";
-import { PINNED_LISTS } from "./query";
+import { PINNED_LISTS, LISTS } from "./query";
 import { Loading } from "./Loading";
 
 class Lists extends Component {
@@ -53,7 +53,18 @@ class Lists extends Component {
             </View>
           </ScrollView>
           <View style={styles.cardList}>
-            <AllLists />
+            <Query query={LISTS}>
+              {({ loading, error, data }) => {
+                if (loading) return <Loading />;
+                if (error) return <text>error</text>;
+                return (
+                  <AllLists
+                    lists={data.lists}
+                    onLearnDetail={list => this.onLearnDetail(list)}
+                  />
+                );
+              }}
+            </Query>
           </View>
         </ScrollView>
       </View>

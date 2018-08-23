@@ -1,31 +1,24 @@
 import React, { Component } from "react";
-import { Query, withApollo } from "react-apollo";
-import { LISTS } from "./query";
-import { Text, View, StyleSheet, Animated } from "react-native";
+
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import Header from "./Header";
-import { Loading } from "./Loading";
 
 class AllLists extends Component {
   render() {
+    const { onLearnDetail, lists } = this.props;
     return (
-      <Query query={LISTS}>
-        {({ loading, error, data }) => {
-          if (loading) return <Loading />;
-
-          return (
-            <View style={styles.container}>
-              <Header headerTitle="All lists" />
-              {data.lists.map(list => (
-                <View key={list.id} style={styles.listItems}>
-                  <Text style={styles.listName}>{list.name}</Text>
-                  <Text style={styles.count}>{list.toDoes.length} items</Text>
-                  <View style={styles.divider} />
-                </View>
-              ))}
-            </View>
-          );
-        }}
-      </Query>
+      <View style={styles.container}>
+        <Header headerTitle="All lists" />
+        {lists.map(list => (
+          <View key={list.id} style={styles.listItems}>
+            <TouchableOpacity onPress={() => onLearnDetail(list)}>
+              <Text style={styles.listName}>{list.name}</Text>
+              <Text style={styles.count}>{list.toDoes.length} items</Text>
+              <View style={styles.divider} />
+            </TouchableOpacity>
+          </View>
+        ))}
+      </View>
     );
   }
 }
@@ -55,4 +48,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withApollo(AllLists);
+export default AllLists;
