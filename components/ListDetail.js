@@ -1,43 +1,88 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  ScrollView
+} from "react-native";
+import {
+  MaterialCommunityIcons,
+  FontAwesome,
+  Ionicons
+} from "@expo/vector-icons";
+import Header from "./Header";
+import { WhitespaceMedium } from "./Whitespace";
 
 class ListDetail extends Component {
+  static navigationOptions = {
+    headerStyle: { backgroundColor: "white", borderBottomWidth: 0 }
+  };
+
+  state = {
+    toDo: ""
+  };
+
   render() {
     const { name, toDoes, pinned } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
-        <Text>{name}</Text>
-        {toDoes.map(toDo => (
-          <View key={toDo.id} style={styles.todoListItem}>
-            <View style={styles.acitonSituation}>
-              <TouchableOpacity>
-                <View>
-                  {toDo.situation === "Completed" ? (
-                    <MaterialCommunityIcons
-                      name="check-circle-outline"
-                      color="#5EA80E"
-                      size={18}
-                    />
-                  ) : (
-                    <View style={styles.notStarted} />
-                  )}
-                </View>
-              </TouchableOpacity>
+        <ScrollView>
+          <Header headerTitle={name} />
+          <Text style={styles.count}>{toDoes.length} items</Text>
+          <WhitespaceMedium />
+          {toDoes.map(toDo => (
+            <View key={toDo.id} style={styles.todoListItem}>
+              <View style={styles.acitonSituation}>
+                <TouchableOpacity>
+                  <View>
+                    {toDo.situation === "Completed" ? (
+                      <View style={styles.completed}>
+                        <MaterialCommunityIcons
+                          name="check"
+                          color="#5EA80E"
+                          size={16}
+                          iconStyle={{
+                            position: "absolute",
+                            alignItems: "center",
+                            justifyContent: "center"
+                          }}
+                        />
+                      </View>
+                    ) : (
+                      <View style={styles.notStarted} />
+                    )}
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.toDo}>
+                <Text
+                  style={
+                    toDo.situation === "Completed"
+                      ? styles.titleCompleted
+                      : styles.titleNormal
+                  }
+                >
+                  {toDo.title}
+                </Text>
+                <Text style={styles.description}>{toDo.description}</Text>
+              </View>
+              <View style={styles.priority}>
+                <FontAwesome name="star-o" color="#FF952C" size={24} />
+              </View>
             </View>
-            <View style={styles.toDo}>
-              <Text
-                style={
-                  toDo.situation === "Completed"
-                    ? styles.titleCompleted
-                    : styles.titleNormal
-                }
-              >
-                {toDo.title}
-              </Text>
-            </View>
+          ))}
+
+          <View style={styles.todoListItem}>
+            <View style={styles.notStarted} />
+            <TextInput
+              style={styles.toDoInput}
+              value={this.state.toDo}
+              placeholder=" Add new item"
+            />
           </View>
-        ))}
+        </ScrollView>
       </View>
     );
   }
@@ -45,18 +90,30 @@ class ListDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
+    flex: 1,
+    padding: 20,
+    backgroundColor: "white"
   },
 
   todoListItem: {
     flexDirection: "row",
-    paddingTop: 5,
-    paddingBottom: 5
+    paddingTop: 12,
+    paddingBottom: 12
+  },
+  actionSituation: {
+    width: 24
+  },
+
+  toDo: {
+    width: "80%",
+    paddingLeft: 16
+  },
+  priority: {
+    alignItems: "flex-end"
   },
   notStarted: {
-    height: 16,
-    width: 16,
-    marginRight: 10,
+    height: 24,
+    width: 24,
     borderStyle: "solid",
     borderColor: "#bababa",
     borderRadius: 100,
@@ -64,35 +121,47 @@ const styles = StyleSheet.create({
   },
 
   completed: {
-    height: 16,
-    width: 16,
-    marginRight: 10,
-    backgroundColor: "gray",
+    height: 24,
+    width: 24,
     borderStyle: "solid",
-    borderColor: "green",
+    borderColor: "#5EA80E",
     borderRadius: 100,
     borderWidth: 1.5,
     alignItems: "center",
     justifyContent: "center"
   },
-  acitonSituation: {
-    flex: 1
+
+  titleCompleted: {
+    fontSize: 20,
+    fontWeight: "400",
+    color: "#5EA80E",
+    opacity: 0.7,
+    marginBottom: 2,
+
+    textDecorationLine: "line-through"
   },
-  toDo: {
-    flex: 5
+
+  titleNormal: {
+    fontSize: 20,
+    fontWeight: "400",
+    color: "#252525",
+    marginBottom: 2
   },
+
+  description: {
+    fontSize: 16,
+    color: "#6e6e6e",
+    marginBottom: 2
+  },
+
   count: {
     color: "#a8a8a8",
     fontSize: 14,
-    marginBottom: 10
+    marginTop: 5
   },
-
-  headerTitle: {
+  toDoInput: {
     fontSize: 20,
-    fontWeight: "500",
-    paddingLeft: 20,
-    paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: 16
   }
 });
 

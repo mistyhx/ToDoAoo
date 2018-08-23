@@ -93,18 +93,6 @@ const styles = StyleSheet.create({
     borderWidth: 1.5
   },
 
-  completed: {
-    height: 16,
-    width: 16,
-    marginRight: 10,
-    backgroundColor: "gray",
-    borderStyle: "solid",
-    borderColor: "green",
-    borderRadius: 100,
-    borderWidth: 1.5,
-    alignItems: "center",
-    justifyContent: "center"
-  },
   acitonSituation: {
     flex: 1
   },
