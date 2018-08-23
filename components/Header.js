@@ -14,8 +14,7 @@ class Header extends Component {
 const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 24,
-    fontWeight: "700",
-    paddingLeft: 20
+    fontWeight: "700"
   }
 });
 

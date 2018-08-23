@@ -2,14 +2,15 @@ import React, { Component } from "react";
 import { Query, withApollo } from "react-apollo";
 import { LIST_TODOS } from "./query";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Loading } from "./Loading";
 
 class MiniList extends Component {
   render() {
     return (
       <Query query={LIST_TODOS}>
         {({ loading, error, data }) => {
-          if (loading) return <Text>loading</Text>;
+          if (loading) return <Loading />;
 
           return (
             <View style={styles.container}>
@@ -20,9 +21,9 @@ class MiniList extends Component {
                     <View style={styles.acitonSituation}>
                       <TouchableOpacity>
                         <View>
-                          {toDo.situation === "In progress" ? (
-                            <MaterialIcons
-                              name="check-circle"
+                          {toDo.situation === "Completed" ? (
+                            <MaterialCommunityIcons
+                              name="check-circle-outline"
                               color="#5EA80E"
                               size={18}
                             />
@@ -33,8 +34,15 @@ class MiniList extends Component {
                       </TouchableOpacity>
                     </View>
                     <View style={styles.toDo}>
-                      <Text style={styles.title}>{toDo.title}</Text>
-                      <Text style={styles.description}>{toDo.description}</Text>
+                      <Text
+                        style={
+                          toDo.situation === "Completed"
+                            ? styles.titleCompleted
+                            : styles.titleNormal
+                        }
+                      >
+                        {toDo.title}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -52,10 +60,21 @@ const styles = StyleSheet.create({
     flex: 1
   },
   todoList: {},
-  title: {
+  titleCompleted: {
     fontSize: 16,
     fontWeight: "500",
-    color: "#252525"
+    color: "#5EA80E",
+    opacity: 0.7,
+    marginBottom: 2,
+
+    textDecorationLine: "line-through"
+  },
+
+  titleNormal: {
+    fontSize: 16,
+    fontWeight: "500",
+    color: "#252525",
+    marginBottom: 2
   },
   description: {
     color: "#9d9d9d",
@@ -72,16 +91,16 @@ const styles = StyleSheet.create({
     width: 16,
     marginRight: 10,
     borderStyle: "solid",
-    borderColor: "#dfdfdf",
+    borderColor: "#bababa",
     borderRadius: 100,
     borderWidth: 1.5
   },
 
-  inProgress: {
+  completed: {
     height: 16,
     width: 16,
     marginRight: 10,
-    backgroundColor: "green",
+    backgroundColor: "gray",
     borderStyle: "solid",
     borderColor: "green",
     borderRadius: 100,

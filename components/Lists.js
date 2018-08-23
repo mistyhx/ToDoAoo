@@ -4,7 +4,8 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Animated
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo";
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
   cardList: {
     marginTop: 10,
     height: 600,
+    paddingLeft: 20,
     backgroundColor: "white"
   },
 

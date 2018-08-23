@@ -14,12 +14,7 @@ class Priorities extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60
-  },
-  headerTitle: {
-    fontSize: 24,
-    fontWeight: "700",
-    paddingLeft: 20,
+    padding: 20,
     paddingTop: 60
   }
 });
