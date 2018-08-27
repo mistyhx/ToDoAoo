@@ -69,7 +69,13 @@ class ListDetail extends Component {
                 <Text style={styles.description}>{toDo.description}</Text>
               </View>
               <View style={styles.priority}>
-                <FontAwesome name="star-o" color="#FF952C" size={24} />
+                <TouchableOpacity>
+                  <FontAwesome
+                    name={toDo.prioritized ? "star" : "star-o"}
+                    color="#FF952C"
+                    size={24}
+                  />
+                </TouchableOpacity>
               </View>
             </View>
           ))}

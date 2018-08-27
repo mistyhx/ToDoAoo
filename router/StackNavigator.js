@@ -7,7 +7,8 @@ import {
   MaterialCommunityIcons,
   MaterialIcons
 } from "@expo/vector-icons";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, Platform } from "react-native";
+import { TransitionConfiguration } from "./TransitionConfiguration";
 
 export const ListStack = createStackNavigator({
   Lists: {

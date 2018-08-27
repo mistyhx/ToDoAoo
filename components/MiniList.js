@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 class MiniList extends Component {
@@ -10,7 +16,7 @@ class MiniList extends Component {
         {lists.map(list => (
           <View key={list.id}>
             <Text style={styles.headerTitle}>{list.name}</Text>
-            <TouchableOpacity onPress={() => onLearnDetail(list)}>
+            <TouchableWithoutFeedback onPress={() => onLearnDetail(list)}>
               <View style={styles.card}>
                 <Text style={styles.count}>{list.toDoes.length} items</Text>
 
@@ -45,7 +51,7 @@ class MiniList extends Component {
                   </View>
                 ))}
               </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </View>
         ))}
       </View>

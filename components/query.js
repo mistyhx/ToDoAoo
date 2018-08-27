@@ -12,6 +12,23 @@ export const LIST_TODOS = gql`
   }
 `;
 
+export const PRIORITIES = gql`
+  {
+    toDoes(where: { prioritized: true }) {
+      id
+      title
+      description
+      date
+      situation
+      list {
+        id
+        name
+      }
+      prioritized
+    }
+  }
+`;
+
 export const LISTS = gql`
   {
     lists {
@@ -49,3 +66,48 @@ export const PINNED_LISTS = gql`
     }
   }
 `;
+
+//mutations
+export const PRIORITY_MUTATION = gql`
+  mutation($toDoId: ID!) {
+    updateToDo(data: { prioritized: false }, where: { id: $toDoId }) {
+      id
+      prioritized
+    }
+  }
+`;
+/*
+mutation{
+    updateToDo(
+        data:{
+        prioritized:false
+    }
+    where:{
+        id:"cjl3xscbxku9x098935rfnlyr"
+    }
+
+) {
+        title
+        prioritized
+    }
+}
+
+mutation{
+  createToDo(
+   data:{
+    title: "make cake"
+    list:{connect:{
+      id: "cjl3xtjlqkuch0989f4y6hk40"
+    }}
+    prioritized:false
+
+  }
+  ) {
+    id
+    title
+    prioritized
+    list{name}
+  }
+}
+
+*/
