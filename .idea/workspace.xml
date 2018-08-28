@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a438e2d-c65e-4535-bd83-e00936149a23" name="Default Changelist" comment="first commit">
-      <change beforePath="$PROJECT_DIR$/components/CreateNew.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/CreateNew.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Search.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Search.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/query.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/query.js" afterDir="false" />
-    </list>
+    <list default="true" id="0a438e2d-c65e-4535-bd83-e00936149a23" name="Default Changelist" comment="first commit" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -82,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/Lists.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="570">
+              <caret line="38" column="72" lean-forward="true" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -103,7 +98,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/CreateNew.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="457">
@@ -321,12 +316,12 @@
       <workItem from="1534945778265" duration="27597000" />
       <workItem from="1535121776350" duration="6761000" />
       <workItem from="1535140949497" duration="3654000" />
-      <workItem from="1535386861802" duration="7379000" />
+      <workItem from="1535386861802" duration="8068000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92409000" />
+    <option name="totallyTimeSpent" value="93098000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -585,16 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/CreateNew.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/Search.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="691">
@@ -607,8 +592,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/Lists.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="570">
+          <caret line="38" column="72" lean-forward="true" selection-start-line="38" selection-start-column="72" selection-end-line="38" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/CreateNew.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="39" column="19" lean-forward="true" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
