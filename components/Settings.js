@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "700",
     paddingLeft: 20,
-    paddingTop: 30
+    paddingTop: 60
   }
 });
 

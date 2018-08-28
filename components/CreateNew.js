@@ -10,18 +10,34 @@ import {
 import Header from "./Header";
 import { WhitespaceLarge, WhitespaceMedium } from "./Whitespace";
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { Mutation } from "react-apollo";
+import { CREATE_ITEM } from "./query";
 
 class CreateNew extends Component {
   state = {
-    toDo: ""
+    title: ""
   };
   render() {
+    const { title } = this.state;
     return (
       <View style={styles.container}>
-        <Button
-          title="done"
-          onPress={() => this.props.navigation.navigate("Lists")}
-        />
+        <Mutation
+          mutation={CREATE_ITEM}
+          variables={{ title }}
+          onCompleted={() => this.props.history.push("/")}
+        >
+          {createToDo => (
+            <Button
+              style={{
+                position: "absolute",
+                right: 20,
+                alignItems: "flex-end"
+              }}
+              title="Done"
+              onPress={createToDo}
+            />
+          )}
+        </Mutation>
 
         <WhitespaceMedium />
 
@@ -32,8 +48,10 @@ class CreateNew extends Component {
           <View style={styles.notStarted} />
           <TextInput
             style={styles.toDoInput}
-            value={this.state.toDo}
+            value={title}
+            onChangeText={title => this.setState({ title })}
             placeholder=" Add an item (Required)"
+            returnKeyType="done"
           />
         </View>
         <WhitespaceMedium />
@@ -65,7 +83,8 @@ class CreateNew extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    paddingTop: 60
+    paddingTop: 60,
+    flex: 1
   },
   toDoInput: {
     fontSize: 20

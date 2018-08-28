@@ -76,6 +76,22 @@ export const PRIORITY_MUTATION = gql`
     }
   }
 `;
+
+//Create a new item
+export const CREATE_ITEM = gql`
+  mutation($title: String!) {
+    createToDo(
+      data: {
+        title: $title
+        list: { connect: { id: "cjl3xtjlqkuch0989f4y6hk40" } }
+      }
+    ) {
+      id
+      title
+    }
+  }
+`;
+
 /*
 mutation{
     updateToDo(
