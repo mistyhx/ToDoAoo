@@ -25,7 +25,7 @@ class ListDetail extends Component {
   };
 
   render() {
-    const { name, toDoes, pinned } = this.props.navigation.state.params;
+    const { name, toDoes } = this.props.navigation.state.params;
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -37,7 +37,7 @@ class ListDetail extends Component {
               <View style={styles.acitonSituation}>
                 <TouchableOpacity>
                   <View>
-                    {toDo.situation === "Completed" ? (
+                    {toDo.status === "done" ? (
                       <View style={styles.completed}>
                         <MaterialCommunityIcons
                           name="check"
@@ -59,7 +59,7 @@ class ListDetail extends Component {
               <View style={styles.toDo}>
                 <Text
                   style={
-                    toDo.situation === "Completed"
+                    toDo.status === "done"
                       ? styles.titleCompleted
                       : styles.titleNormal
                   }
@@ -71,7 +71,7 @@ class ListDetail extends Component {
               <View style={styles.priority}>
                 <TouchableOpacity>
                   <FontAwesome
-                    name={toDo.prioritized ? "star" : "star-o"}
+                    name={(toDo.prioritized = true ? "star" : "star-o")}
                     color="#FF952C"
                     size={24}
                   />

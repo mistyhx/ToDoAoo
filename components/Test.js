@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { Query, withApollo } from "react-apollo";
+import { Query } from "react-apollo";
 import { GET_LISTS } from "./query";
 import { Loading } from "./Loading";
 

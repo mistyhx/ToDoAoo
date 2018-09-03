@@ -5,7 +5,7 @@ import { Rehydrated } from "aws-appsync-react";
 import appSyncConfig from "./AppSync";
 import Test from "./components/Test";
 
-//import Tabnavigator from "./router/Tabnavigator";
+import Tabnavigator from "./router/Tabnavigator";
 
 const client = new AWSAppSyncClient({
   url: appSyncConfig.graphqlEndpoint,
@@ -20,7 +20,7 @@ export default class App extends React.Component {
     return (
       <ApolloProvider client={client}>
         <Rehydrated>
-          <Test />
+          <Tabnavigator />
         </Rehydrated>
       </ApolloProvider>
     );
