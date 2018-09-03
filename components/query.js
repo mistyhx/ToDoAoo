@@ -1,41 +1,129 @@
 import gql from "graphql-tag";
 
 export const LIST_TODOS = gql`
-  query toDoes {
+  {
     toDoes {
       id
       title
       description
+      date
+      situation
     }
   }
 `;
 
-export const LIST_RECEIPES = gql`
-  query listRecipes {
-    listRecipes {
-      items {
-        name
-        id
-      }
-    }
-  }
-`;
-
-export const POSTLIST = gql`
-  query posts($first: Int!, $skip: Int!) {
-    posts(orderBy: dateAndTime_DESC, first: $first, skip: $skip) {
+export const PRIORITIES = gql`
+  {
+    toDoes(where: { prioritized: true }) {
       id
-      slug
       title
-      dateAndTime
-      coverImage {
-        handle
+      description
+      date
+      situation
+      list {
+        id
+        name
       }
-    }
-    postsConnection {
-      aggregate {
-        count
-      }
+      prioritized
     }
   }
 `;
+
+export const LISTS = gql`
+  {
+    lists {
+      id
+      name
+      toDoes {
+        id
+        title
+        description
+        situation
+        prioritized
+        date
+      }
+      situation
+      pinned
+    }
+  }
+`;
+
+export const PINNED_LISTS = gql`
+  {
+    lists(where: { pinned: true }) {
+      id
+      name
+      toDoes {
+        id
+        title
+        description
+        situation
+        prioritized
+        date
+      }
+      situation
+      pinned
+    }
+  }
+`;
+
+//mutations
+export const PRIORITY_MUTATION = gql`
+  mutation($toDoId: ID!) {
+    updateToDo(data: { prioritized: false }, where: { id: $toDoId }) {
+      id
+      prioritized
+    }
+  }
+`;
+
+//Create a new item
+export const CREATE_ITEM = gql`
+  mutation($title: String!) {
+    createToDo(
+      data: {
+        title: $title
+        list: { connect: { id: "cjl3xtjlqkuch0989f4y6hk40" } }
+      }
+    ) {
+      id
+      title
+    }
+  }
+`;
+
+/*
+mutation{
+    updateToDo(
+        data:{
+        prioritized:false
+    }
+    where:{
+        id:"cjl3xscbxku9x098935rfnlyr"
+    }
+
+) {
+        title
+        prioritized
+    }
+}
+
+mutation{
+  createToDo(
+   data:{
+    title: "make cake"
+    list:{connect:{
+      id: "cjl3xtjlqkuch0989f4y6hk40"
+    }}
+    prioritized:false
+
+  }
+  ) {
+    id
+    title
+    prioritized
+    list{name}
+  }
+}
+
+*/
