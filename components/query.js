@@ -1,5 +1,24 @@
 import gql from "graphql-tag";
 
+export const GET_LISTS = gql`
+  query GetLists {
+    listLists {
+      items {
+        name
+        id
+        pinned
+        toDoes {
+          id
+          title
+          prioritized
+          description
+          status
+        }
+      }
+    }
+  }
+`;
+
 export const LIST_TODOS = gql`
   {
     toDoes {
