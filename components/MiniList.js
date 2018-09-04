@@ -11,6 +11,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 class MiniList extends Component {
   render() {
     const { onLearnDetail, lists } = this.props;
+
     return (
       <View style={styles.container}>
         {lists.map(list => (
@@ -25,7 +26,7 @@ class MiniList extends Component {
                     <View style={styles.acitonSituation}>
                       <TouchableOpacity>
                         <View>
-                          {toDo.situation === "Completed" ? (
+                          {toDo.status === "done" ? (
                             <MaterialCommunityIcons
                               name="check-circle-outline"
                               color="#5EA80E"
@@ -40,7 +41,7 @@ class MiniList extends Component {
                     <View style={styles.toDo}>
                       <Text
                         style={
-                          toDo.situation === "Completed"
+                          toDo.status === "done"
                             ? styles.titleCompleted
                             : styles.titleNormal
                         }

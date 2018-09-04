@@ -11,7 +11,7 @@ import { Query, withApollo } from "react-apollo";
 import { LinearGradient } from "expo";
 import AllLists from "./AllLists";
 import MiniList from "./MiniList";
-import { PINNED_LISTS, LISTS } from "./query";
+import { PINNED_LISTS, GET_LISTS } from "./query";
 import { Loading } from "./Loading";
 
 class Lists extends Component {
@@ -44,7 +44,7 @@ class Lists extends Component {
                   if (error) return <text>error</text>;
                   return (
                     <MiniList
-                      lists={data.lists}
+                      lists={data.listLists.items}
                       onLearnDetail={list => this.onLearnDetail(list)}
                     />
                   );
@@ -53,13 +53,13 @@ class Lists extends Component {
             </View>
           </ScrollView>
           <View style={styles.cardList}>
-            <Query query={LISTS}>
+            <Query query={GET_LISTS}>
               {({ loading, error, data }) => {
                 if (loading) return <Loading />;
                 if (error) return <text>error</text>;
                 return (
                   <AllLists
-                    lists={data.lists}
+                    lists={data.listLists.items}
                     onLearnDetail={list => this.onLearnDetail(list)}
                   />
                 );
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withApollo(Lists);
+export default Lists;

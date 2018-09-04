@@ -18,6 +18,7 @@ const DismissKeyboard = ({ children }) => (
 
 class Search extends Component {
   state = {
+    items: [],
     text: ""
   };
 
@@ -46,6 +47,7 @@ class Search extends Component {
               </TouchableOpacity>
             ) : null}
           </View>
+          <View style={styles.searchResult} />
         </View>
       </DismissKeyboard>
     );
@@ -71,7 +73,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 10,
     marginTop: 20
-  }
+  },
+  searchResult: {}
 });
 
 export default Search;

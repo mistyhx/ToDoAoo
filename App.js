@@ -1,23 +1,27 @@
 import React from "react";
-import { ApolloClient } from "apollo-client";
-import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import AWSAppSyncClient from "aws-appsync";
 import { ApolloProvider } from "react-apollo";
+import { Rehydrated } from "aws-appsync-react";
+import appSyncConfig from "./AppSync";
+import Test from "./components/Test";
+
 import Tabnavigator from "./router/Tabnavigator";
 
-const GRAPHCMS_API =
-  "https://api-useast.graphcms.com/v1/cjkzo3d6u012001ah5x3rknhl/master";
-
-const client = new ApolloClient({
-  link: new HttpLink({ uri: GRAPHCMS_API }),
-  cache: new InMemoryCache()
+const client = new AWSAppSyncClient({
+  url: appSyncConfig.graphqlEndpoint,
+  region: appSyncConfig.region,
+  auth: {
+    type: appSyncConfig.authenticationType,
+    apiKey: appSyncConfig.apiKey
+  }
 });
-
 export default class App extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <Tabnavigator />
+        <Rehydrated>
+          <Tabnavigator />
+        </Rehydrated>
       </ApolloProvider>
     );
   }
