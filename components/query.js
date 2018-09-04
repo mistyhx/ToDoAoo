@@ -19,6 +19,25 @@ export const GET_LISTS = gql`
   }
 `;
 
+export const PINNED_LISTS = gql`
+  query FilterLists {
+    listLists(filter: { pinned: { eq: true } }) {
+      items {
+        name
+        id
+        pinned
+        toDoes {
+          id
+          title
+          prioritized
+          description
+          status
+        }
+      }
+    }
+  }
+`;
+
 export const LIST_TODOS = gql`
   {
     toDoes {
@@ -51,25 +70,6 @@ export const PRIORITIES = gql`
 export const LISTS = gql`
   {
     lists {
-      id
-      name
-      toDoes {
-        id
-        title
-        description
-        situation
-        prioritized
-        date
-      }
-      situation
-      pinned
-    }
-  }
-`;
-
-export const PINNED_LISTS = gql`
-  {
-    lists(where: { pinned: true }) {
       id
       name
       toDoes {

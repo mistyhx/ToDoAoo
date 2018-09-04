@@ -11,6 +11,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 class MiniList extends Component {
   render() {
     const { onLearnDetail, lists } = this.props;
+
     return (
       <View style={styles.container}>
         {lists.map(list => (
