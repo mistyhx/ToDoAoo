@@ -12,8 +12,9 @@ import {
   FontAwesome,
   Ionicons
 } from "@expo/vector-icons";
-import { Query, withApollo, Mutation } from "react-apollo";
-import { PRIORITIES, PRIORITY_MUTATION } from "./query";
+import { Query } from "react-apollo";
+import { PRIORITIES } from "./query";
+
 import { Loading } from "./Loading";
 import { WhitespaceMedium } from "./Whitespace";
 
@@ -28,14 +29,16 @@ class Priorities extends Component {
             {({ loading, error, data }) => {
               if (loading) return <Loading />;
               if (error) return <text>error</text>;
+
+              const ItemsToRender = data.listToDos.items;
               return (
                 <View>
-                  {data.toDoes.map(toDo => (
-                    <View key={toDo.id} style={styles.todoListItem}>
+                  {ItemsToRender.map(item => (
+                    <View key={item.id} style={styles.todoListItem}>
                       <View style={styles.acitonSituation}>
                         <TouchableOpacity>
                           <View>
-                            {toDo.situation === "Completed" ? (
+                            {item.status === "done" ? (
                               <View style={styles.completed}>
                                 <MaterialCommunityIcons
                                   name="check"
@@ -57,32 +60,26 @@ class Priorities extends Component {
                       <View style={styles.toDo}>
                         <Text
                           style={
-                            toDo.situation === "Completed"
+                            item.status === "done"
                               ? styles.titleCompleted
                               : styles.titleNormal
                           }
                         >
-                          {toDo.title}
+                          {item.title}
                         </Text>
                         <Text style={styles.description}>
-                          {toDo.description}
+                          {item.description}
                         </Text>
                       </View>
                       <View style={styles.priority}>
-                        <Mutation
-                          mutation={PRIORITY_MUTATION}
-                          variables={{ toDoId: toDo.id }}
-                        >
-                          {updateToDo => (
-                            <TouchableOpacity onPress={updateToDo}>
-                              <FontAwesome
-                                name={toDo.prioritized ? "star" : "star-o"}
-                                color="#FF952C"
-                                size={24}
-                              />
-                            </TouchableOpacity>
-                          )}
-                        </Mutation>
+                        <TouchableOpacity>
+                          <FontAwesome
+                            name={(item.prioritized = true ? "star" : "star-o")}
+                            color="#FF952C"
+                            size={24}
+                          />
+                        </TouchableOpacity>
+                        )}
                       </View>
                     </View>
                   ))}
@@ -172,4 +169,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withApollo(Priorities);
+export default Priorities;

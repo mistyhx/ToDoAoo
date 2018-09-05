@@ -38,31 +38,17 @@ export const PINNED_LISTS = gql`
   }
 `;
 
-export const LIST_TODOS = gql`
-  {
-    toDoes {
-      id
-      title
-      description
-      date
-      situation
-    }
-  }
-`;
-
 export const PRIORITIES = gql`
-  {
-    toDoes(where: { prioritized: true }) {
-      id
-      title
-      description
-      date
-      situation
-      list {
+  query GetToDoes {
+    listToDos(filter: { prioritized: { eq: true } }) {
+      items {
         id
-        name
+        title
+        description
+        prioritized
+        listId
+        status
       }
-      prioritized
     }
   }
 `;
