@@ -31,7 +31,9 @@ class Priorities extends Component {
         update: (dataProxy, { data: { updateToDo } }) => {
           const query = PRIORITIES;
           const data = dataProxy.readQuery({ query });
-          data.listToDos.items.push(updateToDo);
+          let { items } = data.listToDos;
+          items = items.map(n => (n.id === updateToDo.id ? updateToDo : n));
+          data.listToDos.items = items;
           dataProxy.writeQuery({ query, data });
         },
         optimisticResponse: {
