@@ -13,19 +13,46 @@ import {
   Ionicons
 } from "@expo/vector-icons";
 import { Query } from "react-apollo";
-import { PRIORITIES } from "./query";
+import { PRIORITIES, PRIORITIZE_TODO } from "./query";
+import { withApollo } from "react-apollo";
 
 import { Loading } from "./Loading";
 import { WhitespaceMedium } from "./Whitespace";
 
 class Priorities extends Component {
+  updateToDo = item => {
+    this.props.client
+      .mutate({
+        variables: {
+          id: item.id,
+          prioritized: false
+        },
+        mutation: PRIORITIZE_TODO,
+        update: (dataProxy, { data: { updateToDo } }) => {
+          const query = PRIORITIES;
+          const data = dataProxy.readQuery({ query });
+          data.listToDos.items.push(updateToDo);
+          dataProxy.writeQuery({ query, data });
+        },
+        optimisticResponse: {
+          updateToDo: {
+            ...item,
+            optimistic: true,
+            version: 2,
+            __typename: "ToDo"
+          }
+        }
+      })
+      .catch(e => console.log("Update ToDo ", e));
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Header headerTitle="Priorities" />
         <ScrollView>
           <WhitespaceMedium />
-          <Query query={PRIORITIES}>
+          <Query query={PRIORITIES} fetchPolicy="cache-and-network">
             {({ loading, error, data }) => {
               if (loading) return <Loading />;
               if (error) return <text>error</text>;
@@ -72,14 +99,14 @@ class Priorities extends Component {
                         </Text>
                       </View>
                       <View style={styles.priority}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={this.updateToDo(item)}>
                           <FontAwesome
                             name={(item.prioritized = true ? "star" : "star-o")}
                             color="#FF952C"
                             size={24}
                           />
                         </TouchableOpacity>
-                        )}
+                        )} )}
                       </View>
                     </View>
                   ))}
@@ -169,4 +196,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Priorities;
+export default withApollo(Priorities);

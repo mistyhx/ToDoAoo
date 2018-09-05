@@ -53,31 +53,16 @@ export const PRIORITIES = gql`
   }
 `;
 
-export const LISTS = gql`
-  {
-    lists {
-      id
-      name
-      toDoes {
-        id
-        title
-        description
-        situation
-        prioritized
-        date
-      }
-      situation
-      pinned
-    }
-  }
-`;
-
 //mutations
-export const PRIORITY_MUTATION = gql`
-  mutation($toDoId: ID!) {
-    updateToDo(data: { prioritized: false }, where: { id: $toDoId }) {
+export const PRIORITIZE_TODO = gql`
+  mutation PrioritizeToDo($id: ID!, $prioritized: Boolean!) {
+    updateToDo(input: { id: $id, prioritized: $prioritized }) {
       id
+      title
+      description
+      status
       prioritized
+      listId
     }
   }
 `;
