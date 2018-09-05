@@ -20,8 +20,8 @@ import { Loading } from "./Loading";
 import { WhitespaceMedium } from "./Whitespace";
 
 class Priorities extends Component {
-  // In thois Priorities view, user should be able to unstar the item and it would be removed from the priority list.
-  // In the other ListDetail view user should also be able to toggle the star to add or remove it from the Priorities view.
+  // This is the Priorities screen, here user should be able to unstar the item and it would be removed from the priority list.
+  // In the other ListDetail screen user should also be able to toggle the star to add or remove it from the Priorities view.
   updateToDo = item => {
     this.props.client
       .mutate({
