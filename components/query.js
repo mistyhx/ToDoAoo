@@ -1,5 +1,37 @@
 import gql from "graphql-tag";
 
+export const SEARCH_TODO = gql`
+  query SearchToDo($filter: String!) {
+    listToDos(filter: { title: { contains: $filter } }) {
+      items {
+        id
+        title
+        description
+        prioritized
+
+        listId
+        status
+      }
+    }
+  }
+`;
+
+export const GET_TODO = gql`
+  query GetToDo {
+    listToDos {
+      items {
+        id
+        title
+        description
+        prioritized
+
+        listId
+        status
+      }
+    }
+  }
+`;
+
 export const GET_LISTS = gql`
   query GetLists {
     listLists {
@@ -46,6 +78,7 @@ export const PRIORITIES = gql`
         title
         description
         prioritized
+
         listId
         status
       }

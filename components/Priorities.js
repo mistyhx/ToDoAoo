@@ -34,6 +34,7 @@ class Priorities extends Component {
           const query = PRIORITIES;
           const data = dataProxy.readQuery({ query });
           let { items } = data.listToDos;
+          console.log(items);
           items = items.map(n => (n.id === updateToDo.id ? updateToDo : n));
           data.listToDos.items = items;
           dataProxy.writeQuery({ query, data });
@@ -41,8 +42,7 @@ class Priorities extends Component {
         optimisticResponse: {
           updateToDo: {
             ...item,
-            optimistic: true,
-            version: 2,
+            prioritized: false,
             __typename: "ToDo"
           }
         }
@@ -61,7 +61,11 @@ class Priorities extends Component {
               if (loading) return <Loading />;
               if (error) return <text>error</text>;
 
-              const ItemsToRender = data.listToDos.items;
+              // TODO: Should not need a filter here but ?
+              const ItemsToRender = data.listToDos.items.filter(
+                i => i.prioritized
+              );
+
               return (
                 <View>
                   {ItemsToRender.map(item => (
@@ -103,14 +107,13 @@ class Priorities extends Component {
                         </Text>
                       </View>
                       <View style={styles.priority}>
-                        <TouchableOpacity onPress={this.updateToDo(item)}>
+                        <TouchableOpacity onPress={() => this.updateToDo(item)}>
                           <FontAwesome
-                            name={(item.prioritized = true ? "star" : "star-o")}
+                            name={item.prioritized ? "star" : "star-o"}
                             color="#FF952C"
                             size={24}
                           />
                         </TouchableOpacity>
-                        )} )}
                       </View>
                     </View>
                   ))}

@@ -5,10 +5,13 @@ import {
   View,
   StyleSheet,
   TextInput,
+  Text,
   TouchableOpacity
 } from "react-native";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import Header from "./Header";
+import { SEARCH_TODO, GET_TODO } from "./query";
+import { ApolloConsumer } from "react-apollo";
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -19,35 +22,77 @@ const DismissKeyboard = ({ children }) => (
 class Search extends Component {
   state = {
     items: [],
-    text: ""
+    filter: "",
+    hasResult: "Do search"
+  };
+
+  searchResult = items => {
+    if (items.length) {
+      this.setState({ items: items, hasResult: "Do search" });
+    } else {
+      this.setState({ hasResult: "No result" });
+    }
   };
 
   render() {
+    const { items, filter } = this.state;
     return (
       <DismissKeyboard>
         <View style={styles.container}>
           <Header headerTitle="Search" />
-          <View style={styles.searchInput}>
-            <Feather name="search" size={24} color="#a6a6a6" />
-            <TextInput
-              placeholder="Search by item name"
-              onChangeText={text => this.setState({ text })}
-              value={this.state.text}
-              style={{ width: "85%", paddingLeft: 10, fontSize: 20 }}
-              returnKeyType="search"
-            />
-            {this.state.text != "" ? (
-              <TouchableOpacity onPress={() => this.setState({ text: "" })}>
-                <MaterialIcons
-                  name="cancel"
-                  size={24}
-                  color="#a6a6a6"
-                  style={{ alignSelf: "flex-end", justifyContent: "flex-end" }}
-                />
-              </TouchableOpacity>
-            ) : null}
-          </View>
-          <View style={styles.searchResult} />
+          <ApolloConsumer>
+            {client => (
+              <View>
+                <View style={styles.searchInput}>
+                  <Feather name="search" size={24} color="#a6a6a6" />
+                  <TextInput
+                    placeholder="Search by item name"
+                    onChangeText={filter => this.setState({ filter })}
+                    value={filter}
+                    style={{ width: "85%", paddingLeft: 10, fontSize: 20 }}
+                    returnKeyType="search"
+                    onSubmitEditing={async () => {
+                      const { data } = await client.query({
+                        query: SEARCH_TODO,
+                        variables: { filter: filter }
+                      });
+                      this.searchResult(data.listToDos.items);
+                    }}
+                  />
+                  {filter != "" ? (
+                    <TouchableOpacity
+                      onPress={() => this.setState({ filter: "" })}
+                    >
+                      <MaterialIcons
+                        name="cancel"
+                        size={24}
+                        color="#a6a6a6"
+                        style={{
+                          alignSelf: "flex-end",
+                          justifyContent: "flex-end"
+                        }}
+                      />
+                    </TouchableOpacity>
+                  ) : null}
+                </View>
+                <View style={styles.searchResult}>
+                  {this.state.hasResult === "No result" ? (
+                    <View>
+                      <Text>No result</Text>
+                    </View>
+                  ) : (
+                    <View>
+                      {items.map(item => (
+                        <View key={item.id}>
+                          <Text>{item.title}</Text>
+                        </View>
+                      ))}
+                    </View>
+                  )}
+                </View>
+              </View>
+            )}
+          </ApolloConsumer>
         </View>
       </DismissKeyboard>
     );
