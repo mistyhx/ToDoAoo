@@ -20,91 +20,117 @@ class CreateNew extends Component {
     description: "",
     prioritized: false,
     listId: "",
-    status: ""
+    status: "pending"
+  };
+
+  onSubmit = createToDo => {
+    const { title, description, prioritized, listId, status } = this.state;
+    this.setState({
+      title: "",
+      description: "",
+      prioritized: false,
+      listId: "",
+      status: ""
+    });
+    createToDo({
+      variables: { title, description, prioritized, listId, status }
+    });
   };
   render() {
     const { title, description, prioritized, listId, status } = this.state;
     return (
       <View style={styles.container}>
-        <Mutation
-          mutation={CREATE_TODO}
-          variables={{ title, description, prioritized, listId, status }}
-          onCompleted={() => this.props.history.push("/")}
-        >
-          {createToDo => (
-            <Button
-              style={{
-                position: "absolute",
-                right: 20,
-                alignItems: "flex-end"
-              }}
-              title="Done"
-              onPress={createToDo}
-            />
-          )}
-        </Mutation>
-
         <WhitespaceMedium />
 
         <Header headerTitle="Create new item" />
         <WhitespaceMedium />
-
-        <View style={styles.todoListItem}>
-          <View style={styles.notStarted} />
-          <TextInput
-            style={styles.toDoInput}
-            onChangeText={title => this.setState({ title })}
-            value={title}
-            placeholder=" Add an item (Required)"
-            returnKeyType="done"
-          />
-        </View>
-        <WhitespaceMedium />
-
-        <TextInput
-          style={styles.notes}
-          placeholder=" Notes"
-          onChangeText={description => this.setState({ description })}
-          value={description}
-        />
-        <WhitespaceLarge />
-        <View style={styles.divider} />
-
-        <WhitespaceMedium />
-
-        <View style={styles.listsSelection}>
-          <Picker
-            selectedValue={listId}
-            onValueChange={itemValue => this.setState({ listId: itemValue })}
-          >
-            <Picker.Item
-              label="Example 1"
-              value="018645ff-8ef8-41fd-9c53-451e08ad9f5a"
-            />
-            <Picker.Item
-              label="Example 2"
-              value="64b04973-0199-4f29-8ecb-92131fd387f8"
-            />
-            <Picker.Item
-              label="Example 3"
-              value="6c75ba54-74ed-4013-8bc8-31c1342f4c8a"
-            />
-          </Picker>
-        </View>
-
-        <WhitespaceMedium />
-        <TouchableOpacity
-          onPress={() => this.setState({ prioritized: !prioritized })}
+        <Mutation
+          mutation={CREATE_TODO}
+          fetchPolicy="cache-and-network"
+          optimisticResponse={{
+            createToDo: {
+              __typename: "ToDo",
+              title,
+              description,
+              prioritized,
+              listId,
+              status
+            }
+          }}
         >
-          <View style={styles.priority}>
-            <FontAwesome
-              name={prioritized ? "star" : "star-o"}
-              color="#FF952C"
-              size={32}
-            />
-            <Text style={styles.list}>Mark as a priority</Text>
-          </View>
-        </TouchableOpacity>
+          {createToDo => (
+            <React.Fragment>
+              <View style={styles.todoListItem}>
+                <View style={styles.notStarted} />
+                <TextInput
+                  style={styles.toDoInput}
+                  onChangeText={title => this.setState({ title })}
+                  value={title}
+                  placeholder=" Add an item (Required)"
+                  returnKeyType="done"
+                />
+              </View>
+              <WhitespaceMedium />
+
+              <TextInput
+                style={styles.notes}
+                placeholder=" Notes"
+                onChangeText={description => this.setState({ description })}
+                value={description}
+              />
+              <WhitespaceLarge />
+              <View style={styles.divider} />
+
+              <WhitespaceMedium />
+
+              <View style={styles.listsSelection}>
+                <Text>{listId}</Text>
+                <Picker
+                  selectedValue={listId}
+                  onValueChange={itemValue =>
+                    this.setState({ listId: itemValue })
+                  }
+                >
+                  <Picker.Item
+                    label="Example 1"
+                    value="018645ff-8ef8-41fd-9c53-451e08ad9f5a"
+                  />
+                  <Picker.Item
+                    label="Example 2"
+                    value="64b04973-0199-4f29-8ecb-92131fd387f8"
+                  />
+                  <Picker.Item
+                    label="Example 3"
+                    value="6c75ba54-74ed-4013-8bc8-31c1342f4c8a"
+                  />
+                </Picker>
+              </View>
+
+              <WhitespaceMedium />
+              <TouchableOpacity
+                onPress={() => this.setState({ prioritized: !prioritized })}
+              >
+                <View style={styles.priority}>
+                  <FontAwesome
+                    name={prioritized ? "star" : "star-o"}
+                    color="#FF952C"
+                    size={32}
+                  />
+                  <Text style={styles.list}>Mark as a priority</Text>
+                </View>
+              </TouchableOpacity>
+              <Button
+                style={{
+                  position: "absolute",
+                  right: 20,
+                  alignItems: "flex-end"
+                }}
+                title="Done"
+                onPress={() => this.onSubmit(createToDo)}
+              />
+            </React.Fragment>
+          )}
+        </Mutation>
       </View>
     );
   }
