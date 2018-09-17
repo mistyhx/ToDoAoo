@@ -5,25 +5,30 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Button
+  Button,
+  Picker
 } from "react-native";
 import Header from "./Header";
 import { WhitespaceLarge, WhitespaceMedium } from "./Whitespace";
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import { Mutation } from "react-apollo";
-import { CREATE_ITEM } from "./query";
+import { CREATE_TODO } from "./query";
 
 class CreateNew extends Component {
   state = {
-    title: ""
+    title: "",
+    description: "",
+    prioritized: false,
+    listId: "",
+    status: ""
   };
   render() {
-    const { title } = this.state;
+    const { title, description, prioritized, listId, status } = this.state;
     return (
       <View style={styles.container}>
         <Mutation
-          mutation={CREATE_ITEM}
-          variables={{ title }}
+          mutation={CREATE_TODO}
+          variables={{ title, description, prioritized, listId, status }}
           onCompleted={() => this.props.history.push("/")}
         >
           {createToDo => (
@@ -48,30 +53,55 @@ class CreateNew extends Component {
           <View style={styles.notStarted} />
           <TextInput
             style={styles.toDoInput}
-            value={title}
             onChangeText={title => this.setState({ title })}
+            value={title}
             placeholder=" Add an item (Required)"
             returnKeyType="done"
           />
         </View>
         <WhitespaceMedium />
 
-        <TextInput style={styles.notes} placeholder=" Notes" />
+        <TextInput
+          style={styles.notes}
+          placeholder=" Notes"
+          onChangeText={description => this.setState({ description })}
+          value={description}
+        />
         <WhitespaceLarge />
         <View style={styles.divider} />
 
         <WhitespaceMedium />
-        <TouchableOpacity>
-          <View style={styles.listsSelection}>
-            <Feather name="list" color="gray" size={24} />
-            <Text style={styles.list}>Lists</Text>
-            <MaterialIcons name="arrow-drop-down" color="#252525" size={24} />
-          </View>
-        </TouchableOpacity>
+
+        <View style={styles.listsSelection}>
+          <Picker
+            selectedValue={listId}
+            onValueChange={itemValue => this.setState({ listId: itemValue })}
+          >
+            <Picker.Item
+              label="Example 1"
+              value="018645ff-8ef8-41fd-9c53-451e08ad9f5a"
+            />
+            <Picker.Item
+              label="Example 2"
+              value="64b04973-0199-4f29-8ecb-92131fd387f8"
+            />
+            <Picker.Item
+              label="Example 3"
+              value="6c75ba54-74ed-4013-8bc8-31c1342f4c8a"
+            />
+          </Picker>
+        </View>
+
         <WhitespaceMedium />
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.setState({ prioritized: !prioritized })}
+        >
           <View style={styles.priority}>
-            <FontAwesome name="star-o" color="#FF952C" size={24} />
+            <FontAwesome
+              name={prioritized ? "star" : "star-o"}
+              color="#FF952C"
+              size={32}
+            />
             <Text style={styles.list}>Mark as a priority</Text>
           </View>
         </TouchableOpacity>
@@ -104,9 +134,7 @@ const styles = StyleSheet.create({
   todoListItem: {
     flexDirection: "row"
   },
-  listsSelection: {
-    flexDirection: "row"
-  },
+  listsSelection: {},
   list: {
     fontSize: 20,
     paddingLeft: 10,

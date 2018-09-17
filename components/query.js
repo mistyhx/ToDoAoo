@@ -101,6 +101,34 @@ export const PRIORITIZE_TODO = gql`
 `;
 
 //Create a new item
+
+export const CREATE_TODO = gql`
+  mutation CreateToDo(
+    $title: String!
+    $description: String
+    $prioritized: Boolean!
+    $listId: ID!
+    $status: ToDoStatus = pending
+  ) {
+    createToDo(
+      input: {
+        title: $title
+        description: $description
+        prioritized: $prioritized
+        listId: $listId
+        status: $status
+      }
+    ) {
+      id
+      title
+      description
+      prioritized
+      listId
+      status
+    }
+  }
+`;
+
 export const CREATE_ITEM = gql`
   mutation($title: String!) {
     createToDo(
