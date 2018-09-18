@@ -8,7 +8,6 @@ export const SEARCH_TODO = gql`
         title
         description
         prioritized
-
         listId
         status
       }
@@ -24,7 +23,6 @@ export const GET_TODO = gql`
         title
         description
         prioritized
-
         listId
         status
       }

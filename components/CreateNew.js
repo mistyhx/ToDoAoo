@@ -11,8 +11,8 @@ import {
 import Header from "./Header";
 import { WhitespaceLarge, WhitespaceMedium } from "./Whitespace";
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
-import { Mutation } from "react-apollo";
-import { CREATE_TODO } from "./query";
+import { withApollo, Mutation } from "react-apollo";
+import { CREATE_TODO, GET_TODO } from "./query";
 
 class CreateNew extends Component {
   state = {
@@ -56,6 +56,14 @@ class CreateNew extends Component {
               listId,
               status
             }
+          }}
+          update={(store, { data: { createToDo } }) => {
+            const data = store.readQuery({ query: GET_TODO });
+            data.listToDos.items.unshift(createToDo);
+            store.writeQuery({
+              query: GET_TODO,
+              data
+            });
           }}
         >
           {createToDo => (
