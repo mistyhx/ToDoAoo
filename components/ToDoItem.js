@@ -1,55 +1,56 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import { FontAwesome, MaterialCommunityIcons } from "./ListDetail";
+import {
+  MaterialCommunityIcons,
+  FontAwesome,
+  Ionicons
+} from "@expo/vector-icons";
 
 class ToDoItem extends Component {
   render() {
+    const { title, description, prioritized, status } = this.props.toDo;
     return (
-      <View style={styles.container}>
-        <View key={toDo.id} style={styles.todoListItem}>
-          <View style={styles.acitonSituation}>
-            <TouchableOpacity>
-              <View>
-                {toDo.status === "done" ? (
-                  <View style={styles.completed}>
-                    <MaterialCommunityIcons
-                      name="check"
-                      color="#5EA80E"
-                      size={16}
-                      iconStyle={{
-                        position: "absolute",
-                        alignItems: "center",
-                        justifyContent: "center"
-                      }}
-                    />
-                  </View>
-                ) : (
-                  <View style={styles.notStarted} />
-                )}
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.toDo}>
-            <Text
-              style={
-                toDo.status === "done"
-                  ? styles.titleCompleted
-                  : styles.titleNormal
-              }
-            >
-              {toDo.title}
-            </Text>
-            <Text style={styles.description}>{toDo.description}</Text>
-          </View>
-          <View style={styles.priority}>
-            <TouchableOpacity>
-              <FontAwesome
-                name={(toDo.prioritized = true ? "star" : "star-o")}
-                color="#FF952C"
-                size={24}
-              />
-            </TouchableOpacity>
-          </View>
+      <View style={styles.todoListItem}>
+        <View style={styles.acitonSituation}>
+          <TouchableOpacity>
+            <View>
+              {status === "done" ? (
+                <View style={styles.completed}>
+                  <MaterialCommunityIcons
+                    name="check"
+                    color="#5EA80E"
+                    size={16}
+                    iconStyle={{
+                      position: "absolute",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    }}
+                  />
+                </View>
+              ) : (
+                <View style={styles.notStarted} />
+              )}
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.toDo}>
+          <Text
+            style={
+              status === "done" ? styles.titleCompleted : styles.titleNormal
+            }
+          >
+            {title}
+          </Text>
+          <Text style={styles.description}>{description}</Text>
+        </View>
+        <View style={styles.priority}>
+          <TouchableOpacity>
+            <FontAwesome
+              name={prioritized ? "star" : "star-o"}
+              color="#FF952C"
+              size={24}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -57,11 +58,6 @@ class ToDoItem extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20
-  },
-
   todoListItem: {
     flexDirection: "row",
     paddingTop: 12,

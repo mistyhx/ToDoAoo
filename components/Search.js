@@ -12,6 +12,7 @@ import { Feather, MaterialIcons } from "@expo/vector-icons";
 import Header from "./Header";
 import { SEARCH_TODO, GET_TODO } from "./query";
 import { ApolloConsumer } from "react-apollo";
+import ToDoItem from "./ToDoItem";
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -82,10 +83,8 @@ class Search extends Component {
                     </View>
                   ) : (
                     <View>
-                      {items.map(item => (
-                        <View key={item.id}>
-                          <Text>{item.title}</Text>
-                        </View>
+                      {items.map(toDo => (
+                        <ToDoItem key={toDo.id} toDo={toDo} />
                       ))}
                     </View>
                   )}

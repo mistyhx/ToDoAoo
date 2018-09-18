@@ -14,6 +14,7 @@ import {
 } from "@expo/vector-icons";
 import Header from "./Header";
 import { WhitespaceMedium } from "./Whitespace";
+import ToDoItem from "./ToDoItem";
 
 class ListDetail extends Component {
   static navigationOptions = {
@@ -33,51 +34,7 @@ class ListDetail extends Component {
           <Text style={styles.count}>{toDoes.length} items</Text>
           <WhitespaceMedium />
           {toDoes.map(toDo => (
-            <View key={toDo.id} style={styles.todoListItem}>
-              <View style={styles.acitonSituation}>
-                <TouchableOpacity>
-                  <View>
-                    {toDo.status === "done" ? (
-                      <View style={styles.completed}>
-                        <MaterialCommunityIcons
-                          name="check"
-                          color="#5EA80E"
-                          size={16}
-                          iconStyle={{
-                            position: "absolute",
-                            alignItems: "center",
-                            justifyContent: "center"
-                          }}
-                        />
-                      </View>
-                    ) : (
-                      <View style={styles.notStarted} />
-                    )}
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.toDo}>
-                <Text
-                  style={
-                    toDo.status === "done"
-                      ? styles.titleCompleted
-                      : styles.titleNormal
-                  }
-                >
-                  {toDo.title}
-                </Text>
-                <Text style={styles.description}>{toDo.description}</Text>
-              </View>
-              <View style={styles.priority}>
-                <TouchableOpacity>
-                  <FontAwesome
-                    name={(toDo.prioritized = true ? "star" : "star-o")}
-                    color="#FF952C"
-                    size={24}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+            <ToDoItem key={toDo.id} toDo={toDo} />
           ))}
 
           <View style={styles.todoListItem}>
