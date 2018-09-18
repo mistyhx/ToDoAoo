@@ -11,13 +11,13 @@ import {
 import Header from "./Header";
 import { WhitespaceLarge, WhitespaceMedium } from "./Whitespace";
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
-import { withApollo, Mutation } from "react-apollo";
+import { Mutation } from "react-apollo";
 import { CREATE_TODO, GET_TODO } from "./query";
 
 class CreateNew extends Component {
   state = {
     title: "",
-    description: "",
+    description: null,
     prioritized: false,
     listId: "",
     status: "pending"
@@ -27,14 +27,21 @@ class CreateNew extends Component {
     const { title, description, prioritized, listId, status } = this.state;
     this.setState({
       title: "",
-      description: "",
+      description: null,
       prioritized: false,
       listId: "",
       status: ""
     });
-    createToDo({
-      variables: { title, description, prioritized, listId, status }
-    });
+
+    if (title && description) {
+      createToDo({
+        variables: { title, description, prioritized, listId, status }
+      });
+    } else if (title) {
+      createToDo({
+        variables: { title, prioritized, listId, status }
+      });
+    }
   };
   render() {
     const { title, description, prioritized, listId, status } = this.state;
@@ -56,14 +63,6 @@ class CreateNew extends Component {
               listId,
               status
             }
-          }}
-          update={(store, { data: { createToDo } }) => {
-            const data = store.readQuery({ query: GET_TODO });
-            data.listToDos.items.unshift(createToDo);
-            store.writeQuery({
-              query: GET_TODO,
-              data
-            });
           }}
         >
           {createToDo => (
