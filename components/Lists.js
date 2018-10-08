@@ -38,7 +38,7 @@ class Lists extends Component {
           <Text style={styles.indicator}>Pinned list</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.cardsSlides}>
-              <Query query={PINNED_LISTS}>
+              <Query query={PINNED_LISTS} fetchPolicy="cache-and-network">
                 {({ loading, error, data }) => {
                   if (loading) return <Loading />;
                   if (error) return <text>error</text>;
@@ -52,7 +52,7 @@ class Lists extends Component {
               </Query>
             </View>
           </ScrollView>
-          <View style={styles.cardList}>
+          <View style={styles.cardList} fetchPolicy="cache-and-network">
             <Query query={GET_LISTS}>
               {({ loading, error, data }) => {
                 if (loading) return <Loading />;

@@ -1,5 +1,35 @@
 import gql from "graphql-tag";
 
+export const SEARCH_TODO = gql`
+  query SearchToDo($filter: String!) {
+    listToDos(filter: { title: { contains: $filter } }) {
+      items {
+        id
+        title
+        description
+        prioritized
+        listId
+        status
+      }
+    }
+  }
+`;
+
+export const GET_TODO = gql`
+  query GetToDo {
+    listToDos {
+      items {
+        id
+        title
+        description
+        prioritized
+        listId
+        status
+      }
+    }
+  }
+`;
+
 export const GET_LISTS = gql`
   query GetLists {
     listLists {
@@ -38,65 +68,65 @@ export const PINNED_LISTS = gql`
   }
 `;
 
-export const LIST_TODOS = gql`
-  {
-    toDoes {
-      id
-      title
-      description
-      date
-      situation
-    }
-  }
-`;
-
 export const PRIORITIES = gql`
-  {
-    toDoes(where: { prioritized: true }) {
-      id
-      title
-      description
-      date
-      situation
-      list {
-        id
-        name
-      }
-      prioritized
-    }
-  }
-`;
-
-export const LISTS = gql`
-  {
-    lists {
-      id
-      name
-      toDoes {
+  query GetToDoes {
+    listToDos(filter: { prioritized: { eq: true } }) {
+      items {
         id
         title
         description
-        situation
         prioritized
-        date
+
+        listId
+        status
       }
-      situation
-      pinned
     }
   }
 `;
 
 //mutations
-export const PRIORITY_MUTATION = gql`
-  mutation($toDoId: ID!) {
-    updateToDo(data: { prioritized: false }, where: { id: $toDoId }) {
+export const PRIORITIZE_TODO = gql`
+  mutation PrioritizeToDo($id: ID!, $prioritized: Boolean!) {
+    updateToDo(input: { id: $id, prioritized: $prioritized }) {
       id
+      title
+      description
+      status
       prioritized
+      listId
     }
   }
 `;
 
 //Create a new item
+
+export const CREATE_TODO = gql`
+  mutation CreateToDo(
+    $title: String!
+    $description: String
+    $prioritized: Boolean!
+    $listId: ID!
+    $status: ToDoStatus = pending
+  ) {
+    createToDo(
+      input: {
+        title: $title
+        description: $description
+        prioritized: $prioritized
+        listId: $listId
+        status: $status
+      }
+    ) {
+      id
+      title
+      description
+      prioritized
+      listId
+      status
+    }
+  }
+`;
+
 export const CREATE_ITEM = gql`
   mutation($title: String!) {
     createToDo(

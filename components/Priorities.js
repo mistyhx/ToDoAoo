@@ -12,30 +12,68 @@ import {
   FontAwesome,
   Ionicons
 } from "@expo/vector-icons";
-import { Query, withApollo, Mutation } from "react-apollo";
-import { PRIORITIES, PRIORITY_MUTATION } from "./query";
+import { Query } from "react-apollo";
+import { PRIORITIES, PRIORITIZE_TODO } from "./query";
+import { withApollo } from "react-apollo";
+
 import { Loading } from "./Loading";
 import { WhitespaceMedium } from "./Whitespace";
 
 class Priorities extends Component {
+  // This is the Priorities screen, here user should be able to unstar the item and it would be removed from the Priorities screen
+  // In the other ListDetail screen user should also be able to toggle the star to add or remove it from the Priorities screen.
+  updateToDo = item => {
+    this.props.client
+      .mutate({
+        variables: {
+          id: item.id,
+          prioritized: false
+        },
+        mutation: PRIORITIZE_TODO,
+        update: (dataProxy, { data: { updateToDo } }) => {
+          const query = PRIORITIES;
+          const data = dataProxy.readQuery({ query });
+          let { items } = data.listToDos;
+          console.log(items);
+          items = items.map(n => (n.id === updateToDo.id ? updateToDo : n));
+          data.listToDos.items = items;
+          dataProxy.writeQuery({ query, data });
+        },
+        optimisticResponse: {
+          updateToDo: {
+            ...item,
+            prioritized: false,
+            __typename: "ToDo"
+          }
+        }
+      })
+      .catch(e => console.log("Update ToDo ", e));
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Header headerTitle="Priorities" />
         <ScrollView>
           <WhitespaceMedium />
-          <Query query={PRIORITIES}>
+          <Query query={PRIORITIES} fetchPolicy="cache-and-network">
             {({ loading, error, data }) => {
               if (loading) return <Loading />;
               if (error) return <text>error</text>;
+
+              // TODO: Should not need a filter here but ?
+              const ItemsToRender = data.listToDos.items.filter(
+                i => i.prioritized
+              );
+
               return (
                 <View>
-                  {data.toDoes.map(toDo => (
-                    <View key={toDo.id} style={styles.todoListItem}>
+                  {ItemsToRender.map(item => (
+                    <View key={item.id} style={styles.todoListItem}>
                       <View style={styles.acitonSituation}>
                         <TouchableOpacity>
                           <View>
-                            {toDo.situation === "Completed" ? (
+                            {item.status === "done" ? (
                               <View style={styles.completed}>
                                 <MaterialCommunityIcons
                                   name="check"
@@ -57,32 +95,25 @@ class Priorities extends Component {
                       <View style={styles.toDo}>
                         <Text
                           style={
-                            toDo.situation === "Completed"
+                            item.status === "done"
                               ? styles.titleCompleted
                               : styles.titleNormal
                           }
                         >
-                          {toDo.title}
+                          {item.title}
                         </Text>
                         <Text style={styles.description}>
-                          {toDo.description}
+                          {item.description}
                         </Text>
                       </View>
                       <View style={styles.priority}>
-                        <Mutation
-                          mutation={PRIORITY_MUTATION}
-                          variables={{ toDoId: toDo.id }}
-                        >
-                          {updateToDo => (
-                            <TouchableOpacity onPress={updateToDo}>
-                              <FontAwesome
-                                name={toDo.prioritized ? "star" : "star-o"}
-                                color="#FF952C"
-                                size={24}
-                              />
-                            </TouchableOpacity>
-                          )}
-                        </Mutation>
+                        <TouchableOpacity onPress={() => this.updateToDo(item)}>
+                          <FontAwesome
+                            name={item.prioritized ? "star" : "star-o"}
+                            color="#FF952C"
+                            size={24}
+                          />
+                        </TouchableOpacity>
                       </View>
                     </View>
                   ))}
