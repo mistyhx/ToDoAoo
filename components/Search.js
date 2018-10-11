@@ -8,7 +8,8 @@ import {
   Text,
   TouchableOpacity
 } from "react-native";
-import { Feather, MaterialIcons } from "@expo/vector-icons";
+import Feather from "react-native-vector-icons/Feather";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Header from "./Header";
 import { SEARCH_TODO, GET_TODO } from "./query";
 import { ApolloConsumer } from "react-apollo";

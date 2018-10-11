@@ -6,7 +6,7 @@ import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons
-} from "@expo/vector-icons";
+} from "react-native-vector-icons";
 import { TouchableOpacity, View, Platform } from "react-native";
 import { TransitionConfiguration } from "./TransitionConfiguration";
 

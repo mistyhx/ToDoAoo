@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  Ionicons
-} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "react-native-vector-icons/MaterialCommunityIcons";
+
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 class ToDoItem extends Component {
   render() {

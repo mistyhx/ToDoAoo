@@ -7,11 +7,7 @@ import {
   TextInput,
   ScrollView
 } from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  Ionicons
-} from "@expo/vector-icons";
+
 import Header from "./Header";
 import { WhitespaceMedium } from "./Whitespace";
 import ToDoItem from "./ToDoItem";

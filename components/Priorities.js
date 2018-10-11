@@ -7,11 +7,9 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
-import {
-  MaterialCommunityIcons,
-  FontAwesome,
-  Ionicons
-} from "@expo/vector-icons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Ionnicons from "react-native-vector-icons/Ionicons";
 import { Query } from "react-apollo";
 import { PRIORITIES, PRIORITIZE_TODO } from "./query";
 import { withApollo } from "react-apollo";

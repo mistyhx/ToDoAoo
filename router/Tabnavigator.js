@@ -4,18 +4,15 @@ import CreateNew from "../components/CreateNew";
 import Priorities from "../components/Priorities";
 import Settings from "../components/Settings";
 import Search from "../components/Search";
-import Lists from "../components/Lists";
 
 import { View } from "react-native";
 
-import {
-  FontAwesome,
-  Ionicons,
-  Feather,
-  Entypo,
-  MaterialIcons,
-  MaterialCommunityIcons
-} from "@expo/vector-icons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+
+import Feather from "react-native-vector-icons/Feather";
+
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { ListStack } from "./StackNavigator";
 
 const Tabnavigator = createBottomTabNavigator(

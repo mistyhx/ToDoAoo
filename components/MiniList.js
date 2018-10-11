@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 class MiniList extends Component {
   render() {

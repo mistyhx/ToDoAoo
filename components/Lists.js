@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Query, withApollo } from "react-apollo";
-import { LinearGradient } from "expo";
+
 import AllLists from "./AllLists";
 import MiniList from "./MiniList";
 import { PINNED_LISTS, GET_LISTS } from "./query";
@@ -29,10 +29,6 @@ class Lists extends Component {
         <TouchableOpacity style={styles.addList}>
           <MaterialIcons name="playlist-add" color="white" size={32} />
         </TouchableOpacity>
-        <LinearGradient
-          style={styles.bgCircle}
-          colors={["#17B7FE", "#96ECFF"]}
-        />
 
         <ScrollView scrollsToTop={true}>
           <Text style={styles.indicator}>Pinned list</Text>

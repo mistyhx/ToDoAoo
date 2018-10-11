@@ -10,7 +10,9 @@ import {
 } from "react-native";
 import Header from "./Header";
 import { WhitespaceLarge, WhitespaceMedium } from "./Whitespace";
-import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import Feather from "react-native-vector-icons/Feather";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { Mutation } from "react-apollo";
 import { CREATE_TODO, GET_TODO } from "./query";
 
