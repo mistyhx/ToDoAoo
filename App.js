@@ -2,20 +2,25 @@ import React from "react";
 import AWSAppSyncClient from "aws-appsync";
 import { ApolloProvider } from "react-apollo";
 import { Rehydrated } from "aws-appsync-react";
-import appSyncConfig from "./AppSync";
-import Test from "./components/Test";
+import appSyncConfig from "./aws-exports";
+import Amplify, { Auth } from "aws-amplify";
+import { withAuthenticator } from "aws-amplify-react-native";
 
 import Tabnavigator from "./router/Tabnavigator";
 
+Amplify.configure(appSyncConfig);
+
 const client = new AWSAppSyncClient({
-  url: appSyncConfig.graphqlEndpoint,
-  region: appSyncConfig.region,
+  url: appSyncConfig.aws_appsync_graphqlEndpoint,
+  region: appSyncConfig.aws_appsync_region,
   auth: {
-    type: appSyncConfig.authenticationType,
-    apiKey: appSyncConfig.apiKey
+    type: appSyncConfig.aws_appsync_authenticationType,
+    jwtToken: async () =>
+      (await Auth.currentSession()).getIdToken().getJwtToken(),
+    apiKey: appSyncConfig.aws_appsync_apiKey
   }
 });
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <ApolloProvider client={client}>
@@ -26,3 +31,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default withAuthenticator(App);

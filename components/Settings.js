@@ -1,11 +1,19 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Button } from "react-native";
+import { Auth } from "aws-amplify";
+import RNRestart from "react-native-restart";
 
 class Settings extends Component {
+  signOut = async () => {
+    await Auth.signOut();
+    RNRestart.Restart();
+  };
+
   render() {
     return (
       <View>
         <Text style={styles.headerTitle}>Settings</Text>
+        <Button title="Sign Out" onPress={this.signOut} />
       </View>
     );
   }
